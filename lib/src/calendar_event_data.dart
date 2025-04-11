@@ -29,6 +29,9 @@ class CalendarEventData<T extends Object?> {
   /// Description of the event.
   final String? description;
 
+    /// Ubication of the event.
+  final String? ubication;
+
   /// Defines color of event.
   /// This color will be used in default widgets provided by plugin.
   final Color color;
@@ -52,6 +55,7 @@ class CalendarEventData<T extends Object?> {
     required this.title,
     required DateTime date,
     this.description,
+    this.ubication,
     this.event,
     this.color = Colors.blue,
     this.startTime,
@@ -127,6 +131,7 @@ class CalendarEventData<T extends Object?> {
         "event": event,
         "title": title,
         "description": description,
+        "ubication": ubication,
         "endDate": endDate,
         "recurrenceSettings": recurrenceSettings,
       };
@@ -137,6 +142,7 @@ class CalendarEventData<T extends Object?> {
   CalendarEventData<T> copyWith({
     String? title,
     String? description,
+    String? ubication,
     T? event,
     Color? color,
     DateTime? startTime,
@@ -154,6 +160,7 @@ class CalendarEventData<T extends Object?> {
       endTime: endTime ?? this.endTime,
       color: color ?? this.color,
       description: description ?? this.description,
+      ubication: ubication ?? this.ubication,
       descriptionStyle: descriptionStyle ?? this.descriptionStyle,
       endDate: endDate ?? this.endDate,
       event: event ?? this.event,
@@ -190,6 +197,7 @@ class CalendarEventData<T extends Object?> {
   @override
   int get hashCode =>
       description.hashCode ^
+      ubication.hashCode ^
       descriptionStyle.hashCode ^
       titleStyle.hashCode ^
       color.hashCode ^
