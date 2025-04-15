@@ -29,8 +29,23 @@ class CalendarEventData<T extends Object?> {
   /// Description of the event.
   final String? description;
 
-    /// Ubication of the event.
+  /// Ubication of the event.
   final String? ubication;
+
+  /// Category of the event.
+  final String? category;
+
+  /// Reminder for the event.
+  final String? reminder;
+
+  /// Defines if the event should repeat.
+  final bool repeat;
+
+  /// Defines the active repeater type (e.g., daily, weekly, monthly).
+  final int activeRepeater;
+
+  /// Defines the active weekdays for weekly repetition.
+  final List<int>? activeWeekDays;
 
   /// Defines color of event.
   /// This color will be used in default widgets provided by plugin.
@@ -56,6 +71,11 @@ class CalendarEventData<T extends Object?> {
     required DateTime date,
     this.description,
     this.ubication,
+    this.category,
+    this.reminder,
+    this.repeat = false,
+    this.activeRepeater = 0,
+    this.activeWeekDays,
     this.event,
     this.color = Colors.blue,
     this.startTime,
@@ -132,6 +152,11 @@ class CalendarEventData<T extends Object?> {
         "title": title,
         "description": description,
         "ubication": ubication,
+        "category": category,
+        "reminder": reminder,
+        "repeat": repeat,
+        "activeRepeater": activeRepeater,
+        "activeWeekDays": activeWeekDays,
         "endDate": endDate,
         "recurrenceSettings": recurrenceSettings,
       };
@@ -143,6 +168,11 @@ class CalendarEventData<T extends Object?> {
     String? title,
     String? description,
     String? ubication,
+    String? category,
+    String? reminder,
+    bool? repeat,
+    int? activeRepeater,
+    List<int>? activeWeekDays,
     T? event,
     Color? color,
     DateTime? startTime,
@@ -161,6 +191,11 @@ class CalendarEventData<T extends Object?> {
       color: color ?? this.color,
       description: description ?? this.description,
       ubication: ubication ?? this.ubication,
+      category: category ?? this.category,
+      reminder: reminder ?? this.reminder,
+      repeat: repeat ?? this.repeat,
+      activeRepeater: activeRepeater ?? this.activeRepeater,
+      activeWeekDays: activeWeekDays ?? this.activeWeekDays,
       descriptionStyle: descriptionStyle ?? this.descriptionStyle,
       endDate: endDate ?? this.endDate,
       event: event ?? this.event,
@@ -191,13 +226,35 @@ class CalendarEventData<T extends Object?> {
         color == other.color &&
         titleStyle == other.titleStyle &&
         descriptionStyle == other.descriptionStyle &&
-        description == other.description;
+        description == other.description &&
+        ubication == other.ubication &&
+        category == other.category &&
+        reminder == other.reminder &&
+        repeat == other.repeat &&
+        activeRepeater == other.activeRepeater &&
+        _listEquals(activeWeekDays, other.activeWeekDays);
+  }
+
+  // Helper function to compare two lists
+  bool _listEquals<E>(List<E>? a, List<E>? b) {
+    if (a == null && b == null) return true;
+    if (a == null || b == null || a.length != b.length) return false;
+    if (a.isEmpty) return true;
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
   }
 
   @override
   int get hashCode =>
       description.hashCode ^
       ubication.hashCode ^
+      category.hashCode ^
+      reminder.hashCode ^
+      repeat.hashCode ^
+      activeRepeater.hashCode ^
+      activeWeekDays.hashCode ^
       descriptionStyle.hashCode ^
       titleStyle.hashCode ^
       color.hashCode ^
