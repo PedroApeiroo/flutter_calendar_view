@@ -1,4 +1,6 @@
 import 'package:calendar_view/calendar_view.dart';
+import 'package:calendar_view/src/models/category_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -9,11 +11,13 @@ void main() {
     controller.add(CalendarEventData<String>(
         title: 'none',
         date: now,
+        category: Category(name: 'Default Category', id: '', color: Colors.blue),
         startTime: now,
-        endTime: now.add(Duration(hours: 1))));
+        endTime: now.add(Duration(hours: 1))),);
     controller.add(CalendarEventData<String>(
       title: 'All Day',
       date: DateTime.now().withoutTime,
+      category: Category(name: 'Default Category', id: '', color: Colors.blue)
     ));
 
     expect(controller.getFullDayEvent(now).length, equals(1));

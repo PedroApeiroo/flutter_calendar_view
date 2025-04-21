@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 
 import '../calendar_view.dart';
+import 'models/category_model.dart';
 
 @immutable
 
@@ -33,7 +34,7 @@ class CalendarEventData<T extends Object?> {
   final String? ubication;
 
   /// Category of the event.
-  final String? category;
+  final Category category;
 
   /// Reminder for the event.
   final String? reminder;
@@ -71,7 +72,7 @@ class CalendarEventData<T extends Object?> {
     required DateTime date,
     this.description,
     this.ubication,
-    this.category,
+    required this.category,
     this.reminder,
     this.repeat = false,
     this.activeRepeater = 0,
@@ -168,7 +169,7 @@ class CalendarEventData<T extends Object?> {
     String? title,
     String? description,
     String? ubication,
-    String? category,
+    Category? category,
     String? reminder,
     bool? repeat,
     int? activeRepeater,

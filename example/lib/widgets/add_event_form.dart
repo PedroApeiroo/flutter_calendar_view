@@ -2,6 +2,8 @@ import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 
+import 'package:calendar_view/src/models/category_model.dart';
+
 import '../app_colors.dart';
 import '../constants.dart';
 import '../extension.dart';
@@ -574,16 +576,15 @@ class _AddOrEditEventFormState extends State<AddOrEditEventForm> {
     );
 
     final event = CalendarEventData(
-      date: _startDate,
-      endTime: _endTime,
-      startTime: _startTime,
-      endDate: _endDate,
-      color: _color,
-      title: _titleController.text.trim(),
-      description: _descriptionController.text.trim(),
-      recurrenceSettings: recurrenceSettings,
-    );
-
+        date: _startDate,
+        endTime: _endTime,
+        startTime: _startTime,
+        endDate: _endDate,
+        color: _color,
+        title: _titleController.text.trim(),
+        description: _descriptionController.text.trim(),
+        recurrenceSettings: recurrenceSettings,
+        category: Category(name: 'Default Category', id: '', color: Colors.blue));
     widget.onEventAdd?.call(event);
     _resetForm();
   }

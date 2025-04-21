@@ -1,4 +1,6 @@
 import 'package:calendar_view/calendar_view.dart';
+import 'package:calendar_view/src/models/category_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -14,6 +16,7 @@ void main() {
       date: date,
       startTime: date.add(oneHour),
       endTime: date.add(oneHour * 2),
+      category: Category(name: 'Default Category', id: '', color: Colors.blue)
     );
 
     final second = CalendarEventData(
@@ -22,6 +25,7 @@ void main() {
       date: date,
       startTime: date.add(oneHour * 2),
       endTime: date.add(oneHour * 3),
+      category: Category(name: 'Default Category', id: '', color: Colors.blue)
     );
 
     final third = CalendarEventData(
@@ -30,6 +34,7 @@ void main() {
       date: date,
       startTime: date.add(oneHour * 3),
       endTime: date.add(oneHour * 4),
+      category: Category(name: 'Default Category', id: '', color: Colors.blue)
     );
 
     final fourth = CalendarEventData(
@@ -38,6 +43,7 @@ void main() {
       date: date,
       startTime: date.add(oneHour * 4),
       endTime: date.add(oneHour * 5),
+      category: Category(name: 'Default Category', id: '', color: Colors.blue)
     );
 
     /// Events are in random order
