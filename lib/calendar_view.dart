@@ -19,3 +19,4 @@ export './src/style/header_style.dart';
 export './src/typedefs.dart';
 export './src/week_view/week_view.dart';
 export './src/models/category_model.dart';
+export './src/painters.dart';
