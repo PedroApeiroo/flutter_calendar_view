@@ -5,7 +5,6 @@
 import 'package:flutter/material.dart';
 
 import '../calendar_view.dart';
-import 'models/category_model.dart';
 
 @immutable
 
@@ -66,8 +65,12 @@ class CalendarEventData<T extends Object?> {
   /// Define reoccurrence settings
   final RecurrenceSettings? recurrenceSettings;
 
+  /// Id of the event
+  final String id;
+
   /// {@macro calendar_event_data_doc}
   CalendarEventData({
+    required this.id,
     required this.title,
     required DateTime date,
     this.description,
@@ -146,6 +149,7 @@ class CalendarEventData<T extends Object?> {
   /// Returns event data in [Map<String, dynamic>] format.
   ///
   Map<String, dynamic> toJson() => {
+        "id": id,
         "date": date,
         "startTime": startTime,
         "endTime": endTime,
@@ -166,6 +170,7 @@ class CalendarEventData<T extends Object?> {
   /// as the arguments.
   ///
   CalendarEventData<T> copyWith({
+    String? id,
     String? title,
     String? description,
     String? ubication,
@@ -185,6 +190,7 @@ class CalendarEventData<T extends Object?> {
     RecurrenceSettings? recurrenceSettings,
   }) {
     return CalendarEventData(
+      id: id ?? this.id,
       title: title ?? this.title,
       date: date ?? this.date,
       startTime: startTime ?? this.startTime,
@@ -249,6 +255,7 @@ class CalendarEventData<T extends Object?> {
 
   @override
   int get hashCode =>
+      id.hashCode ^
       description.hashCode ^
       ubication.hashCode ^
       category.hashCode ^
