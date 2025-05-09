@@ -33,7 +33,7 @@ class CalendarEventData<T extends Object?> {
   final String? ubication;
 
   /// Category of the event.
-  final Category category;
+  final Category? category;
 
   /// Reminder for the event.
   final String? reminder;
